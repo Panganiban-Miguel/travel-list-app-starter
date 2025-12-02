@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "./components/logo.js";
 
 // Initial packing items
 const initialItems = [
@@ -15,21 +16,30 @@ function handleAddItems(item){
 
 }
 
-function Logo() {
-  return <h1>My Travel List</h1>;
-}
-
+// function Logo() {
+//   return <h1>My Travel List</h1>;
+// }
 
 function Form() {
   function handleSubmit(e){
     e.preventDefault();
 
     // L13 Activity 8C
-    setDescription('')
-    setPacked(false)
+    if (!description || quantity <= 0) return;
+
+    const newItem = {
+      description,
+      quantity,
+      packed: false,
+      id: Date.now(),
+    };
+
+    onAddItems(newItem);
+
+    setQuantity(1);
+    setDescription("");  
   }
   
-  const [id, setId] = useState(TEMP)
   const [quantity, setQuantity] = useState(1)
   const [description, setDescription] = useState('')
   const [packed, setPacked] = useState(false)
